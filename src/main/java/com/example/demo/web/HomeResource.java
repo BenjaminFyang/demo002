@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeResource {
 
-
     /**
      * 测试的第一行的代码
      *
@@ -22,11 +21,18 @@ public class HomeResource {
      */
     @GetMapping("/hello")
     public String hello() {
-
-
-        // 1.我们的数据库的设计的模式存在的形式
-
-
         return "hello World";
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println("测试方法");
+
+        Object o = new Object();
+        if (o != null) {
+            System.out.println("数据库的数据不能为空");
+        }
+
+
     }
 }
