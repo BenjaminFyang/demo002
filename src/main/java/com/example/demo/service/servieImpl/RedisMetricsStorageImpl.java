@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <>
+ * <redis储存的实现的方式>
  *
  * @author fangyang
  * @create 2020-03-05
