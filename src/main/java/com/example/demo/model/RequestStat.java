@@ -12,26 +12,39 @@ import lombok.Data;
 
 @Data
 public class RequestStat {
+
+    /**
+     * 接口的最大的响应的时间
+     */
     private double maxResponseTime;
+
+    /**
+     * 接口最小的响应的时间
+     */
     private double minResponseTime;
+
+    /**
+     * 接口的平均响应时间
+     */
     private double avgResponseTime;
+
+    /**
+     * 接口的第999次的响应的时间.
+     */
     private double p999ResponseTime;
+
+    /**
+     * 接口99次响应的时间
+     */
     private double p99ResponseTime;
+
+    /**
+     * 请求的次数
+     */
     private long count;
     private long tps;
 
 
-    /**
-     * 构造函数封装
-     *
-     * @param maxResponseTime
-     * @param minResponseTime
-     * @param avgResponseTime
-     * @param p999ResponseTime
-     * @param p99ResponseTime
-     * @param count
-     * @param tps
-     */
     public RequestStat(double maxResponseTime, double minResponseTime, double avgResponseTime,
                        double p999ResponseTime, double p99ResponseTime, long count, long tps) {
         this.maxResponseTime = maxResponseTime;

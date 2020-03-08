@@ -14,11 +14,18 @@ import lombok.Data;
 public class RequestInfo {
 
     /**
-     * 对应的API接口的名字
+     * 对应的API接口的名字.
      */
     private String apiName;
 
+    /**
+     * 接口的响应的时间.
+     */
     private double responseTime;
+
+    /**
+     * 接口的请求的时间.
+     */
     private long timestamp;
 
     public RequestInfo(String apiName, double responseTime, long timestamp) {
