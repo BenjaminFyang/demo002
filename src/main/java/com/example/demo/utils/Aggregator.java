@@ -3,10 +3,7 @@ package com.example.demo.utils;
 import com.example.demo.model.RequestInfo;
 import com.example.demo.model.RequestStat;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -21,9 +18,17 @@ import java.util.Map;
 
 public class Aggregator {
 
+    /**
+     * 查询对应的接口的返回的时间
+     *
+     * @param requestInfos     请求接口的基本参数
+     * @param durationInMillis 频率秒
+     * @return the map
+     */
+    Map<String, RequestStat> aggregate(Map<String, List<RequestInfo>> requestInfos, long durationInMillis) {
 
-    public Map<String, RequestStat> aggregate(Map<String, List<RequestInfo>> requestInfos, long durationInMillis) {
         Map<String, RequestStat> requestStats = new HashMap<>();
+
         for (Map.Entry<String, List<RequestInfo>> entry : requestInfos.entrySet()) {
             String apiName = entry.getKey();
             List<RequestInfo> requestInfosPerApi = entry.getValue();
@@ -33,6 +38,13 @@ public class Aggregator {
         return requestStats;
     }
 
+    /**
+     * 单个接口的统计
+     *
+     * @param requestInfos     指定接口的详情的集合
+     * @param durationInMillis 统计频率
+     * @return the RequestStat
+     */
     private RequestStat doAggregate(List<RequestInfo> requestInfos, long durationInMillis) {
         List<Double> respTimes = new ArrayList<>();
         for (RequestInfo requestInfo : requestInfos) {
@@ -53,19 +65,21 @@ public class Aggregator {
 
     // 以下的函数的代码实现均省略...
     private double max(List<Double> dataset) {
-        return 0;
+        return Collections.max(dataset);
     }
 
     private double min(List<Double> dataset) {
-        return 0;
+        return Collections.min(dataset);
     }
 
     private double avg(List<Double> dataset) {
-        return 0;
+        Optional<Double> optional = dataset.stream()
+                .max(Comparator.comparing(Double::doubleValue));
+        return optional.isPresent() ? optional.get() : 0L;
     }
 
     private double tps(int count, double duration) {
-        return 0;
+        return (count / duration);
     }
 
     private double percentile999(List<Double> dataset) {

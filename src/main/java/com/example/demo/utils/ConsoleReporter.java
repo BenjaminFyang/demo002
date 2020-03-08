@@ -48,7 +48,6 @@ public class ConsoleReporter {
         executor.scheduleAtFixedRate(() -> {
 
             log.info("开始测试。。。。。。");
-
             // 第1个代码逻辑：根据给定的时间区间，从数据库中拉取数据；
             long durationInMillis = durationInSeconds * 1000;
             long endTimeInMillis = System.currentTimeMillis();
@@ -62,8 +61,6 @@ public class ConsoleReporter {
 
 
             //  Map<String, RequestStat> stats = new HashMap<>();
-
-
 //            if (null != requestInfos) {
 //                for (Map.Entry<String, List<RequestInfo>> entry : requestInfos.entrySet()) {
 //                    String apiName = entry.getKey();
