@@ -23,7 +23,7 @@ public interface MetricsStorage {
      *
      * @param requestInfo 请求封装的对象H˙
      */
-    void  saveRequestInfo(RequestInfo requestInfo);
+    void saveRequestInfo(RequestInfo requestInfo);
 
     /**
      * 得到某个时间段接口的请求的基本的信息

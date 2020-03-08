@@ -31,14 +31,10 @@ public class EmailViewer implements StatViewer {
         toAddresses.add(address);
     }
 
-    /**
-     * 整理成邮件的形式发送
-     *
-     * @param requestStats
-     * @param startTimeInMillis
-     * @param endTimeInMills
-     */
+    @Override
     public void output(Map requestStats, long startTimeInMillis, long endTimeInMills) {
+
+        System.out.println("EmailViewer.....");
         // format the requestStats to HTML style.
         // send it to email toAddresses. }
     }

@@ -19,6 +19,8 @@ import com.example.demo.utils.EmailReporter;
  */
 
 public class PerfCounterTest {
+
+
     public static void main(String[] args) {
         MetricsStorage storage = new RedisMetricsStorageImpl();
         Aggregator aggregator = new Aggregator();
@@ -26,7 +28,7 @@ public class PerfCounterTest {
         // 定时触发统计并将结果显示到终端
         ConsoleViewer consoleViewer = new ConsoleViewer();
         ConsoleReporter consoleReporter = new ConsoleReporter(storage, aggregator, consoleViewer);
-        consoleReporter.startRepeatedReport(60, 60);
+        consoleReporter.startRepeatedReport(60, 3);
 
         // 定时触发统计并将结果输出到邮件
         EmailViewer emailViewer = new EmailViewer();
