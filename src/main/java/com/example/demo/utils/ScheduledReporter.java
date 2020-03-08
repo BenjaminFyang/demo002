@@ -15,7 +15,7 @@ import java.util.Map;
  * @create 2020-03-09
  * @since 1.0.0
  */
-public abstract class ScheduledReporter {
+abstract class ScheduledReporter {
     private MetricsStorage metricsStorage;
     private Aggregator aggregator;
     private StatViewer viewer;

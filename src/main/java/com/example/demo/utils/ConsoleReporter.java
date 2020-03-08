@@ -29,7 +29,6 @@ public class ConsoleReporter extends ScheduledReporter {
         this.executor = Executors.newSingleThreadScheduledExecutor();
     }
 
-
     /**
      * 第4个代码逻辑：定时触发第1、2、3代码逻辑的执行；
      *
