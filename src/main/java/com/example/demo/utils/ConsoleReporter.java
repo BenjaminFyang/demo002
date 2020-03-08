@@ -3,11 +3,10 @@ package com.example.demo.utils;
 import com.example.demo.model.RequestInfo;
 import com.example.demo.model.RequestStat;
 import com.example.demo.service.MetricsStorage;
-import com.google.gson.Gson;
+import com.example.demo.service.StatViewer;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
@@ -26,12 +25,15 @@ import java.util.concurrent.TimeUnit;
 public class ConsoleReporter {
 
     private MetricsStorage metricsStorage;
+    private Aggregator aggregator;
     private ScheduledExecutorService executor;
-    // private StatViewer viewer;
+    private StatViewer viewer;
 
 
-    public ConsoleReporter(MetricsStorage metricsStorage) {
+    public ConsoleReporter(MetricsStorage metricsStorage, Aggregator aggregator, StatViewer viewer) {
         this.metricsStorage = metricsStorage;
+        this.aggregator = aggregator;
+        this.viewer = viewer;
         this.executor = Executors.newSingleThreadScheduledExecutor();
     }
 
@@ -55,24 +57,30 @@ public class ConsoleReporter {
             Map<String, List<RequestInfo>> requestInfos =
                     metricsStorage.getRequestInfos(startTimeInMillis, endTimeInMillis);
 
-            Map<String, RequestStat> stats = new HashMap<>();
-            if (null != requestInfos) {
-                for (Map.Entry<String, List<RequestInfo>> entry : requestInfos.entrySet()) {
-                    String apiName = entry.getKey();
-                    List<RequestInfo> requestInfosPerApi = entry.getValue();
+            Map<String, RequestStat> requestStats = aggregator.aggregate(requestInfos, durationInMillis);
+            viewer.output(requestStats, startTimeInMillis, endTimeInMillis);
 
-                    // 第2个代码逻辑：根据原始数据，计算得到统计数据
-                    RequestStat requestStat = Aggregator.aggregate(requestInfosPerApi, durationInMillis);
-                    stats.put(apiName, requestStat);
-                }
 
-            }
+            //  Map<String, RequestStat> stats = new HashMap<>();
+
+
+//            if (null != requestInfos) {
+//                for (Map.Entry<String, List<RequestInfo>> entry : requestInfos.entrySet()) {
+//                    String apiName = entry.getKey();
+//                    List<RequestInfo> requestInfosPerApi = entry.getValue();
+//
+//                    // 第2个代码逻辑：根据原始数据，计算得到统计数据
+//                    Aggregator.aggregate(requestInfosPerApi, durationInMillis);
+//                    stats.put(apiName, requestStat);
+//                }
+//
+//            }
 
 
             // 第3个代码逻辑：将统计数据显示到终端（命令行或邮件）；
-            System.out.println("Time Span: [" + startTimeInMillis + ", " + endTimeInMillis + "]");
-            Gson gson = new Gson();
-            System.out.println(gson.toJson(stats));
+            //  System.out.println("Time Span: [" + startTimeInMillis + ", " + endTimeInMillis + "]");
+            // Gson gson = new Gson();
+            // System.out.println(gson.toJson(stats));
         }, 0, periodInSeconds, TimeUnit.SECONDS);
     }
 

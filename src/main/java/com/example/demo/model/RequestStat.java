@@ -45,6 +45,9 @@ public class RequestStat {
     private long tps;
 
 
+    public RequestStat() {
+    }
+
     public RequestStat(double maxResponseTime, double minResponseTime, double avgResponseTime,
                        double p999ResponseTime, double p99ResponseTime, long count, long tps) {
         this.maxResponseTime = maxResponseTime;
