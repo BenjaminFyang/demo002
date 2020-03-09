@@ -56,4 +56,9 @@ public class EmailReporter extends ScheduledReporter {
         calendar.set(Calendar.MILLISECOND, 0);
         return calendar.getTime();
     }
+
+
+    public static void main(String[] args) {
+        System.out.println("我们的测试的需求的方式");
+    }
 }
