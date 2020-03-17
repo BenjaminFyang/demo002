@@ -23,6 +23,10 @@ public class EmailReporter extends ScheduledReporter {
         super(metricsStorage, aggregator, viewer);
     }
 
+
+    /**
+     * 使用延时的方法来实现
+     */
     public void startDailyReport() {
 
         Date firstTime = trimTimeFieldsToZeroOfNextDay();
@@ -45,7 +49,7 @@ public class EmailReporter extends ScheduledReporter {
      *
      * @return the date
      */
-    protected Date trimTimeFieldsToZeroOfNextDay() {
+    private Date trimTimeFieldsToZeroOfNextDay() {
 
         // 这里可以获取当前时间
         Calendar calendar = Calendar.getInstance();
@@ -56,4 +60,12 @@ public class EmailReporter extends ScheduledReporter {
         calendar.set(Calendar.MILLISECOND, 0);
         return calendar.getTime();
     }
+
+    public void get() {
+
+        System.out.println("我们的测试的方法");
+
+    }
+
+
 }
