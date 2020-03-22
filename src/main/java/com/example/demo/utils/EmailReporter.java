@@ -61,11 +61,20 @@ public class EmailReporter extends ScheduledReporter {
         return calendar.getTime();
     }
 
-    public void get() {
 
-        System.out.println("我们的测试的方法");
+    public static void main(String[] args) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+
+        System.out.println(calendar);
+
 
     }
-
 
 }
