@@ -24,6 +24,11 @@ public class BeanDefinition {
     private boolean lazyInit = false;
 
 
+    /**
+     * 判断懒加载的方式. 面向函数编程
+     *
+     * @return the Boolean
+     */
     public boolean isSingleton() {
         return scope.equals(BeanDefinitionDsl.Scope.SINGLETON);
     }

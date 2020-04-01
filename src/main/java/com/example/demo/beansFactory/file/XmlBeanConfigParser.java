@@ -12,6 +12,8 @@ import java.util.List;
  * @since 1.0.0
  */
 public class XmlBeanConfigParser implements BeanConfigParser {
+
+
     @Override
     public List parse(InputStream inputStream) {
         String content = null;

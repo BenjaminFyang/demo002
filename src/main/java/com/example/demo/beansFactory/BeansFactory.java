@@ -9,18 +9,32 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * <>
+ * <beand的工厂的模式.>
  *
  * @author fangyang
  * @create 2020-03-29
  * @since 1.0.0
  */
 
-
 public class BeansFactory {
+
+
+    /**
+     * 工厂模式、全局的实例.
+     */
     private ConcurrentHashMap<String, Object> singletonObjects = new ConcurrentHashMap<>();
+
+    /**
+     * 工厂模式、全局的模式.
+     */
     private ConcurrentHashMap<String, BeanDefinition> beanDefinitions = new ConcurrentHashMap<>();
 
+
+    /**
+     * 向对应的实体类中添加对应的bean
+     *
+     * @param beanDefinitionList the list of BeanDefinition
+     */
     public void addBeanDefinitions(List<BeanDefinition> beanDefinitionList) {
         for (BeanDefinition beanDefinition : beanDefinitionList) {
             this.beanDefinitions.putIfAbsent(beanDefinition.getId(), beanDefinition);

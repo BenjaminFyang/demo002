@@ -16,6 +16,8 @@ import com.example.demo.beansFactory.model.RateLimiter;
 public class Demo {
 
     public static void main(String[] args) {
+
+        // 表示的是初始化的bean的容器的数据. 初始化代码
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
         RateLimiter rateLimiter = (RateLimiter) applicationContext.getBean("rateLimiter");
         rateLimiter.test();

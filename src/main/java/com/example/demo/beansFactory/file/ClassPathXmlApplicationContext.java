@@ -9,7 +9,8 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * <>
+ * <当创建的对象是一个大的工程的时候>
+ * DI 容器的底层就是基于工厂的模式
  *
  * @author fangyang
  * @create 2020-03-29
@@ -27,7 +28,14 @@ public class ClassPathXmlApplicationContext implements ApplicationContext {
     }
 
 
+    /**
+     * 初始化的时候需要加载的配置文件.
+     *
+     * @param configLocation the configLocation
+     */
     private void loadBeanDefinitions(String configLocation) {
+
+        // 商家的数据处理.
         try (InputStream in = this.getClass().getResourceAsStream("/" + configLocation)) {
             if (in == null) {
                 throw new RuntimeException("Can not find config file: " + configLocation);
